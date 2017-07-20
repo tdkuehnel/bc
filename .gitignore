@@ -1,2 +1,6 @@
 *.bak
 *.BAK
+*.app
+*.APP
+*.exe
+*.EXE

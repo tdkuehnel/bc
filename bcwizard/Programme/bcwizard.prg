@@ -1,6 +1,13 @@
 LPARAMETERS p1,p2,p3,p4,p5,p6,p7,p8,p9
 ? _vfp.application.fullname
 
+public wizardpath
+wizardpath = justpath(sys(16,0))
+
+*= messagebox(wizardpath)
+
+*release wizardpath
+
 * Alle Assistenen ausser PROJECT und APPLICATION umleiten nach wizard.app
 if (type("p1") == "L") or ((type("p1") == "C" and p1 != "PROJECT") and (type("p1") == "C" and p1 != "APPLICATION"))
 	if type("p1") = "C"
@@ -36,6 +43,12 @@ if (type("p1") == "C" and p1 == "APPLICATION")
 	public onewappconfig
 	onewappconfig = newobject("newappconfig", "bcwizard")
 	do form newapp.scx
+
+	release wizardpath
+	return
+
+
+
 	if empty(onewappconfig.homedir)
 		=messagebox("ungültiges Projektverzeichnis", 48, "bcApp Generator")
 		? "release onewappconfig"
@@ -110,7 +123,7 @@ procedure createappdata
 	if not directory("Daten")
 		mkdir "Daten"
 	endif
-	open database bcwizard
+	open database daten\bcwizard
 	set database to bcwizard
 	use app in 0
 	use wizard in 0
